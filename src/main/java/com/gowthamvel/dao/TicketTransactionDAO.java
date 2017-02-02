@@ -14,22 +14,36 @@ public class TicketTransactionDAO {
 	JdbcTemplate jdbcTemplate = ConnectionUtil.getJdbcTemplate();
 
 	public void save(TicketTransaction u) {
-		String sql = "insert into ticket_transaction(id,user_id,emp_id,dept_id,subject,description,created_date,updated_date,status) values(?,?,?,?,?,?,?,?,?)";
-		Object[] params = { u.getId(), u.getUId().getId(), u.getEId().getId(), u.getDId().getId(), u.getSubject(),
-				u.getDescription(), u.getCreatedDate().toLocalDate(), u.getUpdatedDate(), u.getStatus() };
+		String sql = "insert into ticket_transaction(user_id,emp_id,dept_id,subject,description) values(?,?,?,?,?)";
+		Object[] params = { u.getUId().getId(), u.getEId().getId(), u.getDId().getId(), u.getSubject(),
+				u.getDescription() };
 		jdbcTemplate.update(sql, params);
 
 	}
 
 	public void update(TicketTransaction u) {
-		String sql = "update TicketTransaction set status=?  where user_id=?";
+		String sql = "update Ticket_Transaction set status=?  where user_id=?";
 		Object[] params = { u.getUId().getId(), u.getStatus() };
 		jdbcTemplate.update(sql, params);
 
 	}
 
+	public void updateStatus(TicketTransaction u) {
+		String sql = "update Ticket_Transaction set status=?  where user_id=? and id=?";
+		Object[] params = { u.getStatus(), u.getUId().getId(), u.getId() };
+		jdbcTemplate.update(sql, params);
+
+	}
+
+	public void updateDesc(TicketTransaction u) {
+		String sql = "update Ticket_Transaction set description=?,status=?  where user_id=?";
+		Object[] params = { u.getDescription(), u.getStatus(), u.getUId().getId() };
+		jdbcTemplate.update(sql, params);
+
+	}
+
 	public void delete(int id) {
-		String sql = "delete from TicketTransaction where id=?  ";
+		String sql = "delete from Ticket_Transaction where id=?  ";
 		Object[] params = { id };
 		jdbcTemplate.update(sql, params);
 
@@ -51,8 +65,8 @@ public class TicketTransactionDAO {
 			u.setDId(du);
 			u.setSubject(rs.getString("SUBJECT"));
 			u.setDescription(rs.getString("DESCRIPTION"));
-			u.setCreatedDate(rs.getDate("CREATED_DATE"));
-			u.setUpdatedDate(rs.getDate("UPDATED_DATE"));
+			u.setCreatedDate(rs.getDate("CREATED_DATE").toLocalDate());
+			u.setUpdatedDate(rs.getDate("UPDATED_DATE").toLocalDate());
 			u.setStatus(rs.getString("STATUS"));
 			return u;
 

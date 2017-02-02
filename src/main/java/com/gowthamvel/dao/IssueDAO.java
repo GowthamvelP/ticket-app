@@ -13,14 +13,14 @@ public class IssueDAO {
 
 	public void save(Issue u) {
 		String sql = "insert into issues (ticket_id,solution) values(?,?)";
-		Object[] params = { u.getTid(), u.getSolution() };
+		Object[] params = { u.getTid().getId(), u.getSolution() };
 		jdbcTemplate.update(sql, params);
 
 	}
 
 	public void update(Issue u) {
-		String sql = "update issues set solution=?  where id=?";
-		Object[] params = { u.getSolution(), u.getId() };
+		String sql = "update issues set solution=?  where ticket_id=?";
+		Object[] params = { u.getSolution(), u.getTid().getId() };
 		jdbcTemplate.update(sql, params);
 
 	}

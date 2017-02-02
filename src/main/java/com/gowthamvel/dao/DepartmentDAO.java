@@ -56,4 +56,16 @@ public class DepartmentDAO {
 
 	}
 
+	public Department listByName(String name) {
+
+		String sql = "select id from department where name=?";
+		Object[] params = { name };
+		return jdbcTemplate.queryForObject(sql, params, (rs, rowNum) -> {
+			Department u = new Department();
+			u.setId(rs.getLong("ID"));
+			return u;
+		});
+
+	}
+
 }

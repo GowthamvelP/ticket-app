@@ -1,10 +1,6 @@
 package com.gowthamvel.model;
 
-import java.sql.Date;
-
-import com.gowthamvel.model.Department;
-import com.gowthamvel.model.Employee;
-import com.gowthamvel.model.User;
+import java.time.LocalDate;
 
 import lombok.Data;
 
@@ -16,8 +12,8 @@ public class TicketTransaction {
 	private Department dId;
 	private String subject;
 	private String description;
-	private Date createdDate;
-	private Date updatedDate;
+	private LocalDate createdDate;
+	private LocalDate updatedDate;
 	private String status;
 
 }
