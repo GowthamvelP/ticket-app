@@ -14,6 +14,7 @@ public class UserService {
 	public void saveService(User u) throws ServiceException {
 		try {
 			UserValidator uv = new UserValidator();
+			uv.validateSave(u.getId());
 			uv.validateSave(u.getName());
 			uv.validateSave(u.getEmailid());
 			uv.validateSave(u.getPassword());

@@ -1,12 +1,13 @@
 package com.gowthamvel.testdao;
 
 import com.gowthamvel.dao.EmployeeDAO;
+import com.gowthamvel.exception.PersistenceException;
 import com.gowthamvel.model.Department;
 import com.gowthamvel.model.Employee;
 
 public class TestEmployeeDAO {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws PersistenceException {
 		EmployeeDAO dao = new EmployeeDAO();
 		Department u = new Department();
 		Employee eu = new Employee();

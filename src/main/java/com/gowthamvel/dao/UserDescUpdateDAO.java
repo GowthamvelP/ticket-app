@@ -1,44 +1,22 @@
 package com.gowthamvel.dao;
 
-import com.gowthamvel.model.Issue;
+import com.gowthamvel.exception.PersistenceException;
 import com.gowthamvel.model.TicketTransaction;
 import com.gowthamvel.model.User;
 
 public class UserDescUpdateDAO {
-	public void check(long uId, String desc, String state) {
+	public void check(long tid, long uId, String desc) throws PersistenceException {
 		TicketTransactionDAO dao = new TicketTransactionDAO();
 		TicketTransaction t = new TicketTransaction();
 		User u = new User();
+		t.setId(tid);
 		u.setId(uId);
 		t.setUId(u);
 		t.setDescription(desc);
-		t.setStatus(state);
 		dao.updateDesc(t);
 	}
 
-	public void newDesc(long id, long iid, String text) {
-		TicketTransactionDAO dao = new TicketTransactionDAO();
-		TicketTransaction t = new TicketTransaction();
-		User u = new User();
-		u.setId(iid);
-		t.setId(id);
-		t.setUId(u);
-		t.setStatus(text);
-		dao.updateStatus(t);
-	}
-
-	public void cleared(long id, String soln) {
-		Issue i = new Issue();
-		TicketTransaction tid = new TicketTransaction();
-		IssueDAO idao = new IssueDAO();
-		tid.setId(id);
-		i.setTid(tid);
-		i.setSolution(soln);
-		idao.save(i);
-
-	}
-
-	public void closure(long id, long idd, String text) {
+	public void closure(long id, long idd, String text) throws PersistenceException {
 		TicketTransaction ti = new TicketTransaction();
 		TicketTransactionDAO dao = new TicketTransactionDAO();
 		ti.setId(id);

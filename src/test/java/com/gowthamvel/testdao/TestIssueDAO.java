@@ -1,11 +1,12 @@
 package com.gowthamvel.testdao;
 
 import com.gowthamvel.dao.IssueDAO;
+import com.gowthamvel.exception.PersistenceException;
 import com.gowthamvel.model.Issue;
 import com.gowthamvel.model.TicketTransaction;
 
 public class TestIssueDAO {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws PersistenceException {
 		Issue i = new Issue();
 		IssueDAO DAO = new IssueDAO();
 		TicketTransaction tt = new TicketTransaction();

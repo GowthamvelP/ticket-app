@@ -1,6 +1,6 @@
 package com.gowthamvel.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
@@ -8,12 +8,12 @@ import lombok.Data;
 public class TicketTransaction {
 	private long id;
 	private User uId;
-	private Employee eId;
-	private Department dId;
+	private String priority;
+	private String type;
 	private String subject;
 	private String description;
-	private LocalDate createdDate;
-	private LocalDate updatedDate;
+	private LocalDateTime createdDate;
+	private LocalDateTime updatedDate;
 	private String status;
 
 }

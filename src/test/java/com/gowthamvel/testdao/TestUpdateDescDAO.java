@@ -26,7 +26,7 @@ public class TestUpdateDescDAO {
 		// String state = is.getSolution();
 		// us.cleared(id, state);
 		// us.newDesc(id, i, text);
-		us.closure(id, i, text);
+//		us.closure(id, i, text);
 	}
 
 }
